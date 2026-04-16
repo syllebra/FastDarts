@@ -377,7 +377,7 @@
             background-color: var(--active-panel-bg);
             border: 3px solid var(--accent-color);
             border-radius: 8px;
-            padding: clamp(2px, 1vmin, 5px);
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -387,21 +387,24 @@
             max-width: 250px;
             aspect-ratio: 1;
             box-shadow: 0 4px 15px rgba(163, 142, 89, 0.2);
+            overflow: hidden;
         }
 
         .target-label {
             font-size: clamp(0.8rem, 3vmin, 1.5rem);
             color: var(--text-color);
             opacity: 0.8;
-            margin-bottom: 2px;
+            margin-bottom: -5px;
             font-weight: bold;
+            z-index: 1;
         }
 
         .target-value {
-            font-size: clamp(3rem, 15vmin, 8rem);
+            font-size: clamp(4rem, 20vmin, 12rem);
             font-weight: bold;
             color: var(--accent-color);
-            line-height: 0.9;
+            line-height: 0.8;
+            margin: 0;
         }
 
         .darts-indicator {
@@ -496,10 +499,14 @@
         }
 
         .player-score {
-            font-size: clamp(2rem, 9vmin, 4.5rem); 
+            font-size: clamp(3rem, 18vmin, 10rem);
             font-weight: bold;
-            line-height: 1;
-            margin: clamp(2px, 1vh, 5px) 0;
+            line-height: 0.9;
+            margin: 0;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .player-legs {
