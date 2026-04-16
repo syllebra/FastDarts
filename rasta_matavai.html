@@ -268,7 +268,7 @@
             display: flex;
             flex-direction: column;
             padding: 5px;
-            padding-top: 55px; /* Évite l'overlap avec les boutons flottants */
+            padding-top: 25px; /* Évite l'overlap avec les boutons flottants */
             max-width: 1200px; 
             margin: 0 auto;
             width: 100%;
@@ -388,6 +388,7 @@
             aspect-ratio: 1;
             box-shadow: 0 4px 15px rgba(163, 142, 89, 0.2);
             overflow: hidden;
+            gap: 10px;
         }
 
         .target-label {
@@ -400,7 +401,7 @@
         }
 
         .target-value {
-            font-size: clamp(4rem, 20vmin, 12rem);
+            font-size: clamp(4rem, 25vmin, 40rem);
             font-weight: bold;
             color: var(--accent-color);
             line-height: 0.8;
@@ -475,6 +476,7 @@
             opacity: 0.35;
             filter: grayscale(80%);
             transform: scale(0.95);
+            overflow: hidden
         }
 
         .player-card.active-turn {
@@ -499,7 +501,7 @@
         }
 
         .player-score {
-            font-size: clamp(3rem, 18vmin, 10rem);
+            font-size: clamp(3rem, 21vmin, 10rem);
             font-weight: bold;
             line-height: 0.9;
             margin: 0;
@@ -528,27 +530,31 @@
             background-color: rgba(163, 142, 89, 0.1);
             border-color: var(--accent-color);
             color: var(--text-color);
-            font-size: clamp(1.2rem, 5vw, 2.2rem);
+            font-size: clamp(5%, 2vw, 150%);
             /* Suppression du ratio forcé pour éviter que les boutons ne soient trop hauts sur mobile */
             height: clamp(60px, 12vh, 100px);
             display: flex;
             align-items: center;
             justify-content: center;
+            text-transform: none;
             padding: 5px;
             text-align: center;
             line-height: 1.1;
             word-wrap: break-word;
+            flex-direction: column;
+            gap: 4px;
         }
 
         @media (orientation: landscape) and (min-width: 600px) {
             .btn-score {
-                height: clamp(40px, 15vh, 90px);
-                font-size: clamp(1rem, 3.5vw, 2rem);
+                height: clamp(40px, 25vh, 200px);
             }
         }
         
         .btn-score.miss {
             background-color: transparent;
+            opacity: 0.85;
+            text-transform: uppercase;
             color: var(--text-color);
             border-color: var(--border-color);
         }
@@ -557,9 +563,12 @@
             background-color: var(--panel-bg);
             border-color: var(--border-color);
             color: var(--text-color);
-            flex-direction: column;
-            gap: 4px;
-            font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+            
+        }
+
+        .btn-score span i  {
+            font-size: clamp(5%, 20vw, 250%);
+            /* color: var(--accent-color); */
         }
 
         .btn-score.action svg {
@@ -741,7 +750,7 @@
                         </div>
                     </div>
 
-                    <p id="matchStatusDisplay" style="font-size: 0.75rem; margin-top:2px; opacity: 0.8;"></p>
+                    <p id="matchStatusDisplay" style="font-size: 1.75rem; margin-top:2px; opacity: 0.8;"></p>
                 </div>
 
                 <div id="scoresContainer" class="players-grid"></div>
@@ -749,10 +758,10 @@
 
             <div class="game-controls">
                 <div class="scoring-pad">
-                    <button class="btn-score" onclick="registerThrow(1)">Simple</button>
-                    <button class="btn-score" onclick="registerThrow(2)">Double</button>
-                    <button class="btn-score" id="btnTriple" onclick="registerThrow(3)">Triple</button>
-                    <button class="btn-score miss" onclick="registerThrow(0)">Raté (X)</button>
+                    <button class="btn-score" onclick="registerThrow(1)"><span><i>x1</i></span><span>Simple</span></button>
+                    <button class="btn-score" onclick="registerThrow(2)"><span><i>x2</i></span><span>Double</span></button>
+                    <button class="btn-score" id="btnTriple" onclick="registerThrow(3)"><span><i>x3</i></span><span>Triple</span></button>
+                    <button class="btn-score miss" onclick="registerThrow(0)"><span>Raté</span></button>
                     
                     <!-- Bouton Quitter -->
                     <button class="btn-score action" onclick="requestQuit()">
@@ -1236,7 +1245,7 @@
 
             // Affichage Tour
             DOM.turnDisplay.textContent = currentPlayer.name;
-            DOM.matchStatusDisplay.textContent = `Manche vers ${state.game.settings.legsToWin}`;
+            DOM.matchStatusDisplay.textContent = `MANCHE ${state.game.currentRound+1}`;
         }
 
         function renderPlayersGrid() {
