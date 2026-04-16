@@ -68,7 +68,7 @@
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.05;
+            opacity: 0.14;
             z-index: -1;
             pointer-events: none;
         }
@@ -95,6 +95,10 @@
         }
 
         .theme-toggle-floating { right: 10px; }
+        .wake-lock-indicator {
+            right: 60px;
+            display: none; /* Caché par défaut, activé par JS */
+        }
         .fullscreen-toggle-floating { left: 10px; }
 
         .theme-toggle-floating:active, .fullscreen-toggle-floating:active {
@@ -103,6 +107,9 @@
         }
 
         /* Gestion de l'affichage des icônes SVG */
+        .icon-wake-lock { color: var(--accent-color); opacity: 0.3; }
+        .icon-wake-lock.active { opacity: 1; filter: drop-shadow(0 0 5px var(--accent-color)); }
+
         .icon-moon { display: none; }
         .icon-sun { display: block; }
         [data-theme="light"] .icon-moon { display: block; }
@@ -246,6 +253,14 @@
         </svg>
     </button>
 
+    <!-- Indicateur Anti-veille -->
+    <div id="wakeLockIndicator" class="theme-toggle-floating wake-lock-indicator" title="Maintien de l'écran activé">
+        <svg class="icon-wake-lock" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path>
+            <circle cx="12" cy="12" r="4"></circle>
+        </svg>
+    </div>
+
     <!-- Bouton Flottant Thème -->
     <button id="themeToggleBtn" class="theme-toggle-floating" aria-label="Changer de thème">
         <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -296,8 +311,11 @@
 
         const DOM = {
             themeToggleBtn: document.getElementById('themeToggleBtn'),
-            fullscreenToggleBtn: document.getElementById('fullscreenToggleBtn')
+            fullscreenToggleBtn: document.getElementById('fullscreenToggleBtn'),
+            wakeLockIndicator: document.getElementById('wakeLockIndicator')
         };
+
+        let wakeLock = null;
 
         function init() {
             // Appliquer le thème initial
@@ -312,6 +330,33 @@
             document.addEventListener('webkitfullscreenchange', updateFullscreenIcons);
             document.addEventListener('mozfullscreenchange', updateFullscreenIcons);
             document.addEventListener('MSFullscreenChange', updateFullscreenIcons);
+
+            // Gestion du Wake Lock
+            if ('wakeLock' in navigator) {
+                DOM.wakeLockIndicator.style.display = 'flex';
+                requestWakeLock();
+                document.addEventListener('visibilitychange', handleVisibilityChange);
+            }
+        }
+
+        async function requestWakeLock() {
+            try {
+                wakeLock = await navigator.wakeLock.request('screen');
+                const icon = DOM.wakeLockIndicator.querySelector('.icon-wake-lock');
+                icon.classList.add('active');
+
+                wakeLock.addEventListener('release', () => {
+                    icon.classList.remove('active');
+                });
+            } catch (err) {
+                console.error(`${err.name}, ${err.message}`);
+            }
+        }
+
+        function handleVisibilityChange() {
+            if (wakeLock !== null && document.visibilityState === 'visible') {
+                requestWakeLock();
+            }
         }
 
         /* =========================================
