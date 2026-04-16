@@ -70,7 +70,7 @@
             background-size: contain; /* Ajusté pour ne pas rogner le logo */
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.2;
+            opacity: 0.14;
             z-index: -1;
             pointer-events: none;
         }
@@ -95,13 +95,16 @@
             color: var(--text-color);
             border: 2px solid var(--border-color);
             padding: 15px;
-            font-size: 1.1rem;
+            font-size: clamp(1.2rem, 5vmin, 2rem);
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
             width: 100%;
             transition: all 0.2s;
             border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         button:active {
@@ -215,6 +218,11 @@
             padding: 0;
             transition: all 0.3s ease;
         }
+
+        .wake-lock-indicator {
+            right: 60px;
+            display: none; /* Caché par défaut, activé par JS */
+        }
         
         .fullscreen-toggle-floating {
             position: absolute;
@@ -249,6 +257,9 @@
         [data-theme="light"] .icon-sun { display: none; }
         
         /* Icônes Plein écran */
+        .icon-wake-lock { color: var(--accent-color); opacity: 0.3; }
+        .icon-wake-lock.active { opacity: 1; filter: drop-shadow(0 0 5px var(--accent-color)); }
+
         .icon-compress { display: none; }
         .icon-expand { display: block; }
 
@@ -366,45 +377,53 @@
             background-color: var(--active-panel-bg);
             border: 3px solid var(--accent-color);
             border-radius: 8px;
-            padding: clamp(5px, 2vmin, 15px);
+            padding: clamp(2px, 1vmin, 5px);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-width: clamp(70px, 20vmin, 120px);
+            flex: 1;
+            height: 100%;
+            max-width: 250px;
             aspect-ratio: 1;
             box-shadow: 0 4px 15px rgba(163, 142, 89, 0.2);
         }
 
         .target-label {
-            font-size: clamp(0.7rem, 2.5vmin, 1.1rem);
+            font-size: clamp(0.8rem, 3vmin, 1.5rem);
             color: var(--text-color);
             opacity: 0.8;
-            margin-bottom: 5px;
+            margin-bottom: 2px;
             font-weight: bold;
         }
 
         .target-value {
-            font-size: clamp(2.5rem, 10vmin, 5rem); 
+            font-size: clamp(3rem, 15vmin, 8rem);
             font-weight: bold;
             color: var(--accent-color);
-            line-height: 1;
+            line-height: 0.9;
         }
 
         .darts-indicator {
             display: flex;
             gap: clamp(6px, 2vmin, 15px);
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
         }
 
         .dart-slot {
-            width: clamp(35px, 9vmin, 60px);
-            height: clamp(35px, 9vmin, 60px);
+            flex: 1;
+            aspect-ratio: 1;
+            max-width: 100px;
+            max-height: 100px;
             border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: clamp(1.2rem, 4vmin, 2.2rem);
+            font-size: clamp(1.5rem, 6vmin, 3.5rem);
             transition: all 0.3s ease;
         }
 
@@ -502,18 +521,22 @@
             background-color: rgba(163, 142, 89, 0.1);
             border-color: var(--accent-color);
             color: var(--text-color);
-            font-size: clamp(1rem, 3.5vw, 1.3rem);
+            font-size: clamp(1.2rem, 5vw, 2.2rem);
             /* Suppression du ratio forcé pour éviter que les boutons ne soient trop hauts sur mobile */
-            height: clamp(45px, 9vh, 75px);
+            height: clamp(60px, 12vh, 100px);
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 5px;
+            text-align: center;
+            line-height: 1.1;
+            word-wrap: break-word;
         }
 
         @media (orientation: landscape) and (min-width: 600px) {
             .btn-score {
-                height: clamp(40px, 18vh, 80px);
+                height: clamp(40px, 15vh, 90px);
+                font-size: clamp(1rem, 3.5vw, 2rem);
             }
         }
         
@@ -632,6 +655,14 @@
             <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
         </svg>
     </button>
+
+    <!-- Indicateur Anti-veille -->
+    <div id="wakeLockIndicator" class="theme-toggle-floating wake-lock-indicator" title="Maintien de l'écran activé">
+        <svg class="icon-wake-lock" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path>
+            <circle cx="12" cy="12" r="4"></circle>
+        </svg>
+    </div>
 
     <!-- Bouton Flottant Thème -->
     <button id="themeToggleBtn" class="theme-toggle-floating" aria-label="Changer de thème">
@@ -776,6 +807,7 @@
            ========================================= */
         const state = {
             theme: 'dark',
+            wakeLock: null,
             history: [], // Pile d'historique des états de jeu
             isTransitioning: false, // Verrouille l'UI pendant l'animation de changement de joueur
             
@@ -801,6 +833,7 @@
         const DOM = {
             themeToggleBtn: document.getElementById('themeToggleBtn'),
             fullscreenToggleBtn: document.getElementById('fullscreenToggleBtn'),
+            wakeLockIndicator: document.getElementById('wakeLockIndicator'),
             setupView: document.getElementById('setupView'),
             gameView: document.getElementById('gameView'),
             endView: document.getElementById('endView'),
@@ -840,8 +873,35 @@
             document.addEventListener('webkitfullscreenchange', updateFullscreenIcons);
             document.addEventListener('mozfullscreenchange', updateFullscreenIcons);
             document.addEventListener('MSFullscreenChange', updateFullscreenIcons);
+
+            // Gestion du Wake Lock
+            if ('wakeLock' in navigator) {
+                DOM.wakeLockIndicator.style.display = 'flex';
+                requestWakeLock();
+                document.addEventListener('visibilitychange', handleVisibilityChange);
+            }
             
             updateDisplay(); // Gère l'affichage basé sur state.game.status
+        }
+
+        async function requestWakeLock() {
+            try {
+                state.wakeLock = await navigator.wakeLock.request('screen');
+                const icon = DOM.wakeLockIndicator.querySelector('.icon-wake-lock');
+                icon.classList.add('active');
+
+                state.wakeLock.addEventListener('release', () => {
+                    icon.classList.remove('active');
+                });
+            } catch (err) {
+                console.error(`${err.name}, ${err.message}`);
+            }
+        }
+
+        function handleVisibilityChange() {
+            if (state.wakeLock !== null && document.visibilityState === 'visible') {
+                requestWakeLock();
+            }
         }
 
         /* =========================================
