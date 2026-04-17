@@ -67,7 +67,7 @@
             height: 100vh;
             /* Intégration du logo fourni avec la couleur or/bronze (%23A38E59) */
             background-image: url('data:image/svg+xml;utf8,<svg width="16.980463mm" height="21.079481mm" viewBox="0 0 16.980463 21.079481" version="1.1" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-0.02544299,-0.06753615)"><path style="fill:%23A38E59" d="m 9.2584941,21.041775 c -0.331792,-0.331792 -0.222581,-2.234231 0.1341291,-2.336507 4.1413278,-1.187407 5.8753198,-3.266195 5.8002778,-6.953634 -0.04906,-2.4108518 -1.330234,-4.5908438 -3.317634,-5.6451568 -1.144452,-0.60713 -2.1688668,-0.569798 -1.9551838,0.07125 0.05964,0.178932 0.6727028,0.615709 1.3623518,0.970615 3.363614,1.730976 3.256493,7.2849128 -0.173318,8.9860398 -1.8993709,0.942056 -2.0472229,0.703497 -2.0472229,-3.303202 0,-3.2748947 0,-3.2748947 0.7408331,-3.2748947 1.4503858,0 1.7562018,0.9267767 0.7143748,2.1649177 -0.7616458,0.905166 -0.8497428,1.842332 -0.23132,2.460756 1.256693,1.256693 3.197317,-0.913277 2.89861,-3.241172 C 12.90953,8.7987322 11.880802,7.5705212 10.047454,7.1955622 9.2592221,7.0343512 9.1941861,6.9412102 9.1941861,5.9735632 c 0,-1.040662 0.0063,-1.047121 0.9736779,-0.991397 2.264347,0.130442 4.894633,2.114089 6.153817,4.6409401 1.842305,3.6970247 -0.20771,9.0879947 -4.091158,10.7586087 -1.572381,0.67642 -2.7042828,0.927805 -2.9720289,0.66006 z M 5.2054131,15.89708 c -5.49128505,-2.136634 -6.937353,-9.0222618 -2.780859,-13.2413918 1.465316,-1.487397 3.969927,-2.76725893 5.024479,-2.56751993 0.546739,0.103556 0.76074,2.27812093 0.23913,2.42991893 -4.144066,1.206003 -5.902625,3.266512 -5.893904,6.905907 0.0065,2.7138678 2.548049,6.2177078 4.510078,6.2177078 0.849231,0 0.88515,-0.948478 0.04558,-1.203504 -3.880792,-1.178819 -4.153816,-7.6979458 -0.392912,-9.3817528 1.859024,-0.83231 2.046558,-0.543313 2.046558,3.153836 0,3.5756448 -0.247215,4.1462178 -1.453884,3.3555778 -0.836627,-0.548179 -0.836959,-1.06473 -0.0013,-2.0578247 0.76542,-0.9096501 0.825007,-1.4525911 0.249581,-2.2741271 -0.87752,-1.252834 -2.546686,-0.29101 -2.916565,1.680613 -0.412372,2.1981298 1.255867,5.1310888 2.925705,5.1437338 0.912749,0.0069 1.241169,0.391491 1.149969,1.346611 -0.107324,1.124 -0.806476,1.249066 -2.751629,0.492215 z" /></g></svg>');
-            background-size: contain; /* Ajusté pour ne pas rogner le logo */
+            background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
             opacity: 0.14;
@@ -221,7 +221,7 @@
 
         .wake-lock-indicator {
             right: 60px;
-            display: none; /* Caché par défaut, activé par JS */
+            display: none;
         }
         
         .fullscreen-toggle-floating {
@@ -248,15 +248,11 @@
             background-color: var(--active-panel-bg);
         }
 
-        /* Par défaut (Mode Sombre), on affiche le soleil pour passer en mode clair */
         .icon-moon { display: none; }
         .icon-sun { display: block; }
-
-        /* En Mode Clair, on affiche la lune pour passer en mode sombre */
         [data-theme="light"] .icon-moon { display: block; }
         [data-theme="light"] .icon-sun { display: none; }
         
-        /* Icônes Plein écran */
         .icon-wake-lock { color: var(--accent-color); opacity: 0.3; }
         .icon-wake-lock.active { opacity: 1; filter: drop-shadow(0 0 5px var(--accent-color)); }
 
@@ -268,11 +264,11 @@
             display: flex;
             flex-direction: column;
             padding: 5px;
-            padding-top: 25px; /* Évite l'overlap avec les boutons flottants */
+            padding-top: 25px; 
             max-width: 1200px; 
             margin: 0 auto;
             width: 100%;
-            min-height: 0; /* Autorise les enfants flex à rapetisser */
+            min-height: 0; 
         }
 
         .view {
@@ -282,11 +278,11 @@
             animation: fadeIn 0.3s ease-in-out;
             flex: 1; 
             min-height: 0;
-            overflow-y: auto; /* Scroll uniquement sur Setup et Fin */
+            overflow-y: auto; 
         }
 
         #gameView {
-            overflow: hidden; /* Strictement pas de scroll pendant le jeu */
+            overflow: hidden; 
             gap: 5px;
         }
 
@@ -306,7 +302,7 @@
             display: flex;
             flex-direction: column;
             flex: 1;
-            min-height: 0; /* Permet le rétrécissement compressé */
+            min-height: 0; 
         }
 
         .game-controls {
@@ -315,7 +311,7 @@
             justify-content: center; 
             align-items: center; 
             padding-top: 5px;
-            flex: 0 0 auto; /* Prend uniquement la place nécessaire */
+            flex: 0 0 auto; 
         }
 
         @media (orientation: landscape) and (min-width: 600px) {
@@ -408,13 +404,21 @@
             margin: 0;
         }
 
-        .darts-indicator {
+        .throws-column {
             display: flex;
-            gap: clamp(6px, 2vmin, 15px);
+            flex-direction: column;
             flex: 1;
             justify-content: center;
             align-items: center;
-            height: 100%;
+            gap: 10px;
+        }
+
+        .darts-indicator {
+            display: flex;
+            gap: clamp(6px, 2vmin, 15px);
+            width: 100%;
+            justify-content: center;
+            align-items: center;
         }
 
         .dart-slot {
@@ -449,6 +453,53 @@
             color: var(--text-color);
         }
 
+        /* Encart de la dernière volée jouée */
+        .last-turn-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(8px, 3vw, 15px);
+            padding: 4px 10px;
+            background: rgba(244, 244, 244, 0.05);
+            border-radius: 4px;
+            border: 1px dashed var(--border-color);
+            min-height: clamp(35px, 8vw, 45px); /* Réserve l'espace pour éviter le saut d'affichage */
+        }
+
+        .last-turn-name {
+            font-size: clamp(0.9rem, 3vmin, 1.2rem);
+            color: var(--text-color);
+            opacity: 0.8;
+            font-weight: bold;
+        }
+
+        .last-turn-darts {
+            display: flex;
+            gap: 6px;
+        }
+
+        .last-dart-mini {
+            width: clamp(24px, 6vw, 32px);
+            height: clamp(24px, 6vw, 32px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: clamp(0.9rem, 3vmin, 1.1rem);
+        }
+
+        .last-dart-mini.hit {
+            background: var(--accent-color);
+            color: #030202;
+        }
+
+        .last-dart-mini.miss {
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+
         .players-grid {
             display: grid;
             gap: 5px;
@@ -457,7 +508,7 @@
             padding: 2px; 
             flex: 1; 
             min-height: 0;
-            overflow-y: auto; /* Ne s'activera que si 6 joueurs sur un écran minuscule */
+            overflow-y: auto; 
         }
 
         .player-card {
@@ -511,10 +562,18 @@
             justify-content: center;
         }
 
+        .player-mpr {
+            font-size: clamp(0.7rem, 2.5vmin, 0.95rem);
+            color: var(--text-color);
+            opacity: 0.9;
+            margin-top: auto; 
+            font-weight: bold;
+        }
+
         .player-legs {
             font-size: clamp(0.7rem, 2vmin, 1rem);
             opacity: 0.8;
-            margin-top: auto; 
+            margin-top: 2px;
         }
 
         /* Pad de Score */
@@ -531,7 +590,6 @@
             border-color: var(--accent-color);
             color: var(--text-color);
             font-size: clamp(5%, 2vw, 150%);
-            /* Suppression du ratio forcé pour éviter que les boutons ne soient trop hauts sur mobile */
             height: clamp(60px, 12vh, 100px);
             display: flex;
             align-items: center;
@@ -563,12 +621,10 @@
             background-color: var(--panel-bg);
             border-color: var(--border-color);
             color: var(--text-color);
-            
         }
 
         .btn-score span i  {
             font-size: clamp(5%, 20vw, 250%);
-            /* color: var(--accent-color); */
         }
 
         .btn-score.action svg {
@@ -603,7 +659,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: rgba(3, 2, 2, 0.85); /* Fond sombre transparent */
+            background-color: rgba(3, 2, 2, 0.85); 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -653,6 +709,18 @@
             gap: 15px;
         }
 
+        /* Numéro de version discret */
+        .version-number {
+            position: fixed;
+            bottom: 5px;
+            right: 8px;
+            font-size: 0.65rem;
+            color: var(--text-color);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
     </style>
 </head>
 <body>
@@ -662,11 +730,9 @@
     
     <!-- Bouton Flottant Plein Écran -->
     <button id="fullscreenToggleBtn" class="fullscreen-toggle-floating" aria-label="Passer en plein écran">
-        <!-- Icône Agrandir -->
         <svg class="icon-expand" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
         </svg>
-        <!-- Icône Réduire -->
         <svg class="icon-compress" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
         </svg>
@@ -682,11 +748,9 @@
 
     <!-- Bouton Flottant Thème -->
     <button id="themeToggleBtn" class="theme-toggle-floating" aria-label="Changer de thème">
-        <!-- Icône Lune (affichée en mode clair) -->
         <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
-        <!-- Icône Soleil (affichée en mode sombre) -->
         <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="5"></circle>
             <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -709,13 +773,13 @@
             
             <div>
                 <label>Nombre de joueurs</label>
-                <div class="stepper-control">
+                <div class="stepper-control">""
                     <button class="btn-stepper left" onclick="updateStepper('playerCount', -1, 1, 6)">&lt;</button>
                     <span class="stepper-value" id="playerCountVal">2</span>
                     <button class="btn-stepper right" onclick="updateStepper('playerCount', 1, 1, 6)">&gt;</button>
                 </div>
             </div>
-
+""
             <div>
                 <label>Manches Gagnantes</label>
                 <div class="stepper-control">
@@ -745,12 +809,21 @@
                             <span class="target-label" id="targetLabel">CIBLE</span>
                             <span class="target-value" id="targetValue">--</span>
                         </div>
-                        <div class="darts-indicator" id="dartsIndicator">
-                            <!-- Généré par JS -->
+                        
+                        <div class="throws-column">
+                            <div class="darts-indicator" id="dartsIndicator">
+                                <!-- Généré par JS -->
+                            </div>
+                            
+                            <!-- Affichage de la dernière volée (Vérification) -->
+                            <div id="lastTurnDisplay" class="last-turn-container" style="visibility: hidden;">
+                                <span class="last-turn-name" id="lastTurnName">Dernier tour : </span>
+                                <div class="last-turn-darts" id="lastTurnDarts"></div>
+                            </div>
                         </div>
                     </div>
 
-                    <p id="matchStatusDisplay" style="font-size: 1.75rem; margin-top:2px; opacity: 0.8;"></p>
+                    <p id="matchStatusDisplay" style="font-size: 1.25rem; margin-top:2px; opacity: 0.8;"></p>
                 </div>
 
                 <div id="scoresContainer" class="players-grid"></div>
@@ -817,6 +890,9 @@
 
     </main>
 
+    <!-- Numéro de version discret -->
+    <div class="version-number">v1.1</div>
+
     <script>
         /* =========================================
            État de l'Application (State)
@@ -835,9 +911,13 @@
                 },
                 players: [], // { id, name, score, legsWon, throwsThisLeg: [] }
                 currentRound: 0, // 0 à 6 (car 7 volées de 3 fléchettes = 21 fléchettes)
+                legNumber: 1, // Numéro de la Leg en cours
+                startingPlayerIndex: 0, // Joueur qui commence la leg courante
+                playersPlayedThisRound: 0, // Compteur pour savoir si la volée est finie
                 currentPlayerIndex: 0,
                 dartInRound: 0, // 0 à 2 (fléchette 1, 2 ou 3)
                 currentTurnThrows: [], // Stocke les multiplicateurs des fléchettes du tour en cours
+                lastTurn: null, // Historique visuel du tour précédent { playerName, throws: [] }
                 legWinnerId: null,
                 matchWinnerId: null
             }
@@ -867,6 +947,10 @@
             btnTriple: document.getElementById('btnTriple'),
             undoBtn: document.getElementById('undoBtn'),
             
+            lastTurnDisplay: document.getElementById('lastTurnDisplay'),
+            lastTurnName: document.getElementById('lastTurnName'),
+            lastTurnDarts: document.getElementById('lastTurnDarts'),
+
             endTitle: document.getElementById('endTitle'),
             winnerName: document.getElementById('winnerName'),
             statsContainer: document.getElementById('statsContainer'),
@@ -884,20 +968,18 @@
             DOM.fullscreenToggleBtn.addEventListener('click', toggleFullscreen);
             DOM.startGameBtn.addEventListener('click', startGame);
             
-            // Écouteurs pour mettre à jour l'icône plein écran de manière fiable
             document.addEventListener('fullscreenchange', updateFullscreenIcons);
             document.addEventListener('webkitfullscreenchange', updateFullscreenIcons);
             document.addEventListener('mozfullscreenchange', updateFullscreenIcons);
             document.addEventListener('MSFullscreenChange', updateFullscreenIcons);
 
-            // Gestion du Wake Lock
             if ('wakeLock' in navigator) {
                 DOM.wakeLockIndicator.style.display = 'flex';
                 requestWakeLock();
                 document.addEventListener('visibilitychange', handleVisibilityChange);
             }
             
-            updateDisplay(); // Gère l'affichage basé sur state.game.status
+            updateDisplay(); 
         }
 
         async function requestWakeLock() {
@@ -926,7 +1008,6 @@
         function toggleTheme() {
             state.theme = state.theme === 'dark' ? 'light' : 'dark';
             document.body.setAttribute('data-theme', state.theme);
-            // Le changement d'icône est géré automatiquement par le CSS
         }
         
         function toggleFullscreen() {
@@ -971,7 +1052,6 @@
             
             if (newVal >= min && newVal <= max) {
                 valEl.textContent = newVal;
-                // Si on met à jour le nombre de joueurs, on régénère les champs de texte
                 if (id === 'playerCount') {
                     renderNameInputs();
                 }
@@ -1003,9 +1083,13 @@
             state.game.settings.legsToWin = legs;
             state.game.players = [];
             state.game.currentRound = 0;
+            state.game.legNumber = 1;
+            state.game.startingPlayerIndex = 0;
+            state.game.playersPlayedThisRound = 0;
             state.game.currentPlayerIndex = 0;
             state.game.dartInRound = 0;
             state.game.currentTurnThrows = [];
+            state.game.lastTurn = null;
             state.game.legWinnerId = null;
             state.game.matchWinnerId = null;
 
@@ -1016,7 +1100,7 @@
                     name: nameInput.value.trim() || `Joueur ${i}`,
                     score: 0,
                     legsWon: 0,
-                    throwsThisLeg: [] // Pour calculer les stats (Points Par Volée)
+                    throwsThisLeg: [] 
                 });
             }
 
@@ -1028,12 +1112,16 @@
             state.isTransitioning = false;
             state.game.status = 'playing';
             state.game.currentRound = 0;
-            state.game.currentPlayerIndex = 0;
+            state.game.legNumber++;
+            state.game.startingPlayerIndex = (state.game.startingPlayerIndex + 1) % state.game.players.length;
+            state.game.currentPlayerIndex = state.game.startingPlayerIndex;
+            state.game.playersPlayedThisRound = 0;
+            
             state.game.dartInRound = 0;
             state.game.currentTurnThrows = [];
+            state.game.lastTurn = null;
             state.game.legWinnerId = null;
             
-            // Remise à zéro des scores de la manche pour tous
             state.game.players.forEach(p => {
                 p.score = 0;
                 p.throwsThisLeg = [];
@@ -1069,13 +1157,11 @@
            Logique de Jeu (RASTA MATAVAI)
            ========================================= */
         function getTargetNumber() {
-            // Rasta Matavai : on tire cible 1, 2, 3... jusqu'à 21 (Bulle)
-            // Calcul mathématique simple basé sur le round (volée) et la fléchette actuelle
             return (state.game.currentRound * 3) + state.game.dartInRound + 1;
         }
 
         function registerThrow(multiplier) {
-            if (state.isTransitioning) return; // Bloquer les clics multiples pendant la transition
+            if (state.isTransitioning) return; 
 
             saveStateToHistory();
 
@@ -1087,7 +1173,6 @@
 
             if (multiplier > 0) {
                 if (target === 21) {
-                    // Bulle : Simple = 25, Double = 50 (Triple impossible)
                     pointsEarned = multiplier === 1 ? 25 : (multiplier === 2 ? 50 : 0);
                 } else {
                     pointsEarned = target * multiplier;
@@ -1095,12 +1180,11 @@
             }
 
             currentPlayer.score += pointsEarned;
-            currentPlayer.throwsThisLeg.push(multiplier); // On enregistre le hit (1, 2, 3 ou 0) pour le calcul du MPR
+            currentPlayer.throwsThisLeg.push(multiplier); 
 
             state.game.dartInRound++;
             
             if (state.game.dartInRound >= 3) {
-                // Afficher la 3ème fléchette avant de changer de joueur
                 updateDisplay();
                 state.isTransitioning = true;
                 
@@ -1108,41 +1192,45 @@
                     advanceTurnLogic();
                     state.isTransitioning = false;
                     updateDisplay();
-                }, 800); // 800ms de délai pour visualiser la dernière flèche
+                }, 800); 
             } else {
                 updateDisplay();
             }
         }
 
         function advanceTurnLogic() {
+            const currentPlayer = state.game.players[state.game.currentPlayerIndex];
+            state.game.lastTurn = {
+                playerName: currentPlayer.name,
+                throws: [...state.game.currentTurnThrows]
+            };
+
             state.game.dartInRound = 0;
-            state.game.currentPlayerIndex++;
-            state.game.currentTurnThrows = []; // Réinitialiser pour le joueur suivant
+            state.game.currentTurnThrows = []; 
             
-            // Tout le monde a joué la volée
-            if (state.game.currentPlayerIndex >= state.game.players.length) {
-                state.game.currentPlayerIndex = 0;
+            state.game.playersPlayedThisRound++;
+
+            if (state.game.playersPlayedThisRound >= state.game.players.length) {
+                state.game.playersPlayedThisRound = 0;
                 state.game.currentRound++;
                 
-                // Fin de la manche (7 volées complètes = 21 fléchettes jouées par tous)
                 if (state.game.currentRound >= 7) {
                     handleLegEnd();
+                    return; 
                 }
             }
+
+            state.game.currentPlayerIndex = (state.game.currentPlayerIndex + 1) % state.game.players.length;
         }
 
         function handleLegEnd() {
-            // Trouver le score max
             const maxScore = Math.max(...state.game.players.map(p => p.score));
-            // Trouver le(s) joueur(s) ayant ce score
             const winners = state.game.players.filter(p => p.score === maxScore);
             
-            // On attribue une manche à tous ceux qui sont à égalité
             winners.forEach(w => w.legsWon++);
             
             state.game.legWinnerId = winners.map(w => w.name).join(' & ');
 
-            // Vérifier si un joueur a gagné le match
             const matchWinners = state.game.players.filter(p => p.legsWon >= state.game.settings.legsToWin);
             
             if (matchWinners.length > 0) {
@@ -1157,14 +1245,12 @@
            Gestion de l'Historique (Undo)
            ========================================= */
         function saveStateToHistory() {
-            // Copie profonde de l'état de jeu uniquement
             const gameStateCopy = JSON.parse(JSON.stringify(state.game));
             state.history.push(gameStateCopy);
         }
 
         function undoAction() {
             if (state.history.length > 0 && !state.isTransitioning) {
-                // Récupère le dernier état sauvegardé
                 const previousGameState = state.history.pop();
                 state.game = previousGameState;
                 updateDisplay();
@@ -1175,7 +1261,6 @@
            Affichage (Render)
            ========================================= */
         function updateDisplay() {
-            // Gestion de l'affichage des vues
             DOM.setupView.classList.remove('active');
             DOM.gameView.classList.remove('active');
             DOM.endView.classList.remove('active');
@@ -1188,13 +1273,11 @@
                 renderGameHUD();
                 renderPlayersGrid();
                 
-                // État des boutons de score (désactivés pendant la transition)
                 const scoreBtns = document.querySelectorAll('.btn-score');
                 scoreBtns.forEach(btn => {
                     btn.disabled = state.isTransitioning || (btn.id === 'btnTriple' && getTargetNumber() === 21);
                 });
 
-                // État du bouton Undo
                 DOM.undoBtn.disabled = state.history.length === 0 || state.isTransitioning;
                 DOM.undoBtn.style.opacity = (state.history.length === 0 || state.isTransitioning) ? '0.5' : '1';
             } 
@@ -1212,7 +1295,6 @@
             const targetLabelEl = document.getElementById('targetLabel');
             const dartsIndicatorEl = document.getElementById('dartsIndicator');
 
-            // Affichage Cible
             if (target === 21) {
                 targetValueEl.textContent = "B";
                 targetLabelEl.textContent = "BULLE";
@@ -1221,7 +1303,6 @@
                 targetLabelEl.textContent = "CIBLE";
             }
 
-            // Affichage des Fléchettes (3 cases)
             dartsIndicatorEl.innerHTML = '';
             for (let i = 0; i < 3; i++) {
                 const slot = document.createElement('div');
@@ -1243,9 +1324,29 @@
                 dartsIndicatorEl.appendChild(slot);
             }
 
-            // Affichage Tour
+            if (state.game.lastTurn) {
+                DOM.lastTurnDisplay.style.visibility = 'visible';
+                DOM.lastTurnName.textContent = `${state.game.lastTurn.playerName} :`;
+                DOM.lastTurnDarts.innerHTML = '';
+                
+                state.game.lastTurn.throws.forEach(throwVal => {
+                    const miniSlot = document.createElement('div');
+                    miniSlot.className = 'last-dart-mini';
+                    if (throwVal === 0) {
+                        miniSlot.classList.add('miss');
+                        miniSlot.textContent = 'X';
+                    } else {
+                        miniSlot.classList.add('hit');
+                        miniSlot.textContent = throwVal === 1 ? 'S' : (throwVal === 2 ? 'D' : 'T');
+                    }
+                    DOM.lastTurnDarts.appendChild(miniSlot);
+                });
+            } else {
+                DOM.lastTurnDisplay.style.visibility = 'hidden';
+            }
+
             DOM.turnDisplay.textContent = currentPlayer.name;
-            DOM.matchStatusDisplay.textContent = `MANCHE ${state.game.currentRound+1}`;
+            DOM.matchStatusDisplay.textContent = `MANCHE ${state.game.legNumber}`;
         }
 
         function renderPlayersGrid() {
@@ -1256,9 +1357,14 @@
                 const card = document.createElement('div');
                 card.className = `player-card ${isActive ? 'active-turn' : ''}`;
                 
+                const totalMarks = player.throwsThisLeg.reduce((sum, hit) => sum + hit, 0);
+                const dartsThrown = player.throwsThisLeg.length;
+                const mpr = dartsThrown > 0 ? ((totalMarks / dartsThrown) * 3).toFixed(2) : "0.00";
+
                 card.innerHTML = `
                     <div class="player-name">${player.name}</div>
                     <div class="player-score">${player.score}</div>
+                    <div class="player-mpr">MPR: ${mpr}</div>
                     <div class="player-legs">Manches : ${player.legsWon}</div>
                 `;
                 DOM.scoresContainer.appendChild(card);
@@ -1276,10 +1382,9 @@
             DOM.statsContainer.innerHTML = '';
             
             state.game.players.forEach(player => {
-                // Calcul MPR basé sur les "Hits" (Marks Per Round)
-                // Somme des multiplicateurs (1 pour simple, 2 pour double, 3 pour triple) divisée par le nombre de volées (7)
                 const totalMarks = player.throwsThisLeg.reduce((sum, hit) => sum + hit, 0);
-                const mpr = (totalMarks / 7).toFixed(2);
+                const dartsThrown = player.throwsThisLeg.length;
+                const mpr = dartsThrown > 0 ? ((totalMarks / dartsThrown) * 3).toFixed(2) : "0.00";
                 
                 const statCard = document.createElement('div');
                 statCard.className = 'stat-card';
@@ -1293,7 +1398,6 @@
             });
         }
 
-        // Lancement
         init();
 
     </script>
