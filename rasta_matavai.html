@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -14,7 +13,7 @@
             --bg-color: #030202;
             --text-color: #F4F4F4;
             --accent-color: #A38E59;
-            --panel-bg: rgba(244, 244, 244, 0.08);
+            --panel-bg: rgba(244, 244, 244, 0.08); 
             --input-bg: rgba(244, 244, 244, 0.15);
             --border-color: rgba(244, 244, 244, 0.2);
             --active-panel-bg: rgba(163, 142, 89, 0.15);
@@ -43,8 +42,7 @@
         }
 
         /* Forcer le plein écran sans scroll global */
-        html,
-        body {
+        html, body {
             height: 100%;
             overflow: hidden;
         }
@@ -77,15 +75,10 @@
             pointer-events: none;
         }
 
-        ""
-
         /* =========================================
            Typographie et Composants
            ========================================= */
-        h1,
-        h2,
-        h3,
-        h4 {
+        h1, h2, h3, h4 {
             text-transform: uppercase;
             letter-spacing: 1px;
             text-align: center;
@@ -230,7 +223,7 @@
             right: 60px;
             display: none;
         }
-
+        
         .fullscreen-toggle-floating {
             position: absolute;
             top: 10px;
@@ -250,56 +243,32 @@
             transition: all 0.3s ease;
         }
 
-        .theme-toggle-floating:active,
-        .fullscreen-toggle-floating:active {
+        .theme-toggle-floating:active, .fullscreen-toggle-floating:active {
             transform: scale(0.9);
             background-color: var(--active-panel-bg);
         }
 
-        .icon-moon {
-            display: none;
-        }
+        .icon-moon { display: none; }
+        .icon-sun { display: block; }
+        [data-theme="light"] .icon-moon { display: block; }
+        [data-theme="light"] .icon-sun { display: none; }
+        
+        .icon-wake-lock { color: var(--accent-color); opacity: 0.3; }
+        .icon-wake-lock.active { opacity: 1; filter: drop-shadow(0 0 5px var(--accent-color)); }
 
-        .icon-sun {
-            display: block;
-        }
-
-        [data-theme="light"] .icon-moon {
-            display: block;
-        }
-
-        [data-theme="light"] .icon-sun {
-            display: none;
-        }
-
-        .icon-wake-lock {
-            color: var(--accent-color);
-            opacity: 0.3;
-        }
-
-        .icon-wake-lock.active {
-            opacity: 1;
-            filter: drop-shadow(0 0 5px var(--accent-color));
-        }
-
-        .icon-compress {
-            display: none;
-        }
-
-        .icon-expand {
-            display: block;
-        }
+        .icon-compress { display: none; }
+        .icon-expand { display: block; }
 
         main {
             flex: 1;
             display: flex;
             flex-direction: column;
             padding: 5px;
-            padding-top: 25px;
-            max-width: 1200px;
+            padding-top: 25px; 
+            max-width: 1200px; 
             margin: 0 auto;
             width: 100%;
-            min-height: 0;
+            min-height: 0; 
         }
 
         .view {
@@ -307,13 +276,13 @@
             flex-direction: column;
             gap: 10px;
             animation: fadeIn 0.3s ease-in-out;
-            flex: 1;
+            flex: 1; 
             min-height: 0;
-            overflow-y: auto;
+            overflow-y: auto; 
         }
 
         #gameView {
-            overflow: hidden;
+            overflow: hidden; 
             gap: 5px;
         }
 
@@ -322,15 +291,8 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* =========================================
@@ -340,16 +302,16 @@
             display: flex;
             flex-direction: column;
             flex: 1;
-            min-height: 0;
+            min-height: 0; 
         }
 
         .game-controls {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            justify-content: center; 
+            align-items: center; 
             padding-top: 5px;
-            flex: 0 0 auto;
+            flex: 0 0 auto; 
         }
 
         @media (orientation: landscape) and (min-width: 600px) {
@@ -357,13 +319,11 @@
                 flex-direction: row;
                 align-items: stretch;
             }
-
             .game-display {
                 flex: 2;
                 padding-right: 15px;
                 overflow-y: hidden;
             }
-
             .game-controls {
                 flex: 1;
                 justify-content: center;
@@ -371,7 +331,7 @@
                 border-left: 2px solid var(--border-color);
                 padding-left: 15px;
                 padding-top: 0;
-                min-width: 280px;
+                min-width: 280px; 
             }
         }
 
@@ -385,7 +345,7 @@
             padding: clamp(5px, 1.5vh, 15px);
             border-radius: 4px;
             margin-bottom: 5px;
-            flex: 1.2;
+            flex: 1.2; 
             min-height: 0;
             display: flex;
             flex-direction: column;
@@ -405,7 +365,7 @@
             align-items: center;
             gap: clamp(10px, 4vmin, 30px);
             width: 100%;
-            flex: 1;
+            flex: 1; 
             min-height: 0;
         }
 
@@ -503,8 +463,7 @@
             background: rgba(244, 244, 244, 0.05);
             border-radius: 4px;
             border: 1px dashed var(--border-color);
-            min-height: clamp(35px, 8vw, 45px);
-            /* Réserve l'espace pour éviter le saut d'affichage */
+            min-height: clamp(35px, 8vw, 45px); /* Réserve l'espace pour éviter le saut d'affichage */
         }
 
         .last-turn-name {
@@ -546,10 +505,10 @@
             gap: 5px;
             grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
             margin-bottom: 0;
-            padding: 2px;
-            flex: 1;
+            padding: 2px; 
+            flex: 1; 
             min-height: 0;
-            overflow-y: auto;
+            overflow-y: auto; 
         }
 
         .player-card {
@@ -560,11 +519,11 @@
             border-radius: 4px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-
+            
             display: flex;
             flex-direction: column;
             justify-content: center;
-
+            
             opacity: 0.35;
             filter: grayscale(80%);
             transform: scale(0.95);
@@ -577,7 +536,7 @@
             border-color: var(--accent-color);
             border-width: 3px;
             background-color: var(--active-panel-bg);
-            transform: scale(1.02);
+            transform: scale(1.02); 
             box-shadow: 0 4px 10px rgba(163, 142, 89, 0.3);
             z-index: 10;
         }
@@ -607,7 +566,7 @@
             font-size: clamp(0.7rem, 2.5vmin, 0.95rem);
             color: var(--text-color);
             opacity: 0.9;
-            margin-top: auto;
+            margin-top: auto; 
             font-weight: bold;
         }
 
@@ -630,7 +589,7 @@
             background-color: rgba(163, 142, 89, 0.1);
             border-color: var(--accent-color);
             color: var(--text-color);
-            font-size: clamp(5%, 2vw, 150%);
+            font-size: clamp(0.9rem, 3.5vmin, 1.2rem);
             height: clamp(60px, 12vh, 100px);
             display: flex;
             align-items: center;
@@ -649,7 +608,7 @@
                 height: clamp(40px, 25vh, 200px);
             }
         }
-
+        
         .btn-score.miss {
             background-color: transparent;
             opacity: 0.85;
@@ -664,13 +623,15 @@
             color: var(--text-color);
         }
 
-        .btn-score span i {
-            font-size: clamp(5%, 20vw, 250%);
+        .btn-score span i  {
+            font-size: clamp(2.7rem, 9vmin, 3.8rem);
+            font-style: normal;
+            line-height: 1;
         }
 
         .btn-score.action svg {
-            width: clamp(20px, 5vw, 28px);
-            height: clamp(20px, 5vw, 28px);
+            width: clamp(20px, 6vmin, 30px);
+            height: clamp(20px, 6vmin, 30px);
         }
 
         /* =========================================
@@ -681,7 +642,6 @@
             gap: 10px;
             margin-bottom: 20px;
         }
-
         .stat-card {
             background: var(--panel-bg);
             padding: 15px;
@@ -689,17 +649,8 @@
             border: 1px solid var(--border-color);
             text-align: center;
         }
-
-        .stat-card span {
-            display: block;
-        }
-
-        .stat-val {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            margin-top: 5px;
-        }
+        .stat-card span { display: block; }
+        .stat-val { font-size: 1.5rem; font-weight: bold; color: var(--accent-color); margin-top: 5px;}
 
         /* =========================================
            Modal (Popup de Confirmation)
@@ -710,7 +661,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: rgba(3, 2, 2, 0.85);
+            background-color: rgba(3, 2, 2, 0.85); 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -734,7 +685,7 @@
             text-align: center;
             width: 90%;
             max-width: 400px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             transform: translateY(20px);
             transition: transform 0.3s ease;
         }
@@ -764,20 +715,17 @@
         .rules-content {
             text-align: left;
         }
-
         .rules-content p {
             font-size: 1rem;
             margin-bottom: 12px;
             opacity: 0.9;
             line-height: 1.4;
         }
-
         .rules-content ul {
             margin-left: 20px;
             margin-bottom: 15px;
             opacity: 0.9;
         }
-
         .rules-content li {
             margin-bottom: 5px;
             color: var(--text-color);
@@ -794,58 +742,46 @@
             pointer-events: none;
             z-index: 1000;
         }
+
     </style>
 </head>
-
 <body>
 
     <!-- Arrière-plan Logo -->
     <div class="bg-logo"></div>
-
+    
     <!-- Bouton Flottant Plein Écran -->
     <button id="fullscreenToggleBtn" class="fullscreen-toggle-floating" aria-label="Passer en plein écran">
-        <svg class="icon-expand" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3">
-            </path>
+        <svg class="icon-expand" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
         </svg>
-        <svg class="icon-compress" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3">
-            </path>
+        <svg class="icon-compress" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
         </svg>
     </button>
 
     <!-- Bouton Flottant Menu (Paramètres) -->
     <button id="settingsBtn" class="theme-toggle-floating" style="left: 60px;" aria-label="Menu">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="3"></circle>
-            <path
-                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
-            </path>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
         </svg>
     </button>
 
     <!-- Indicateur Anti-veille -->
     <div id="wakeLockIndicator" class="theme-toggle-floating wake-lock-indicator" title="Maintien de l'écran activé">
-        <svg class="icon-wake-lock" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path
-                d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83">
-            </path>
+        <svg class="icon-wake-lock" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path>
             <circle cx="12" cy="12" r="4"></circle>
         </svg>
     </div>
 
     <!-- Bouton Flottant Thème -->
     <button id="themeToggleBtn" class="theme-toggle-floating" aria-label="Changer de thème">
-        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
-        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="5"></circle>
             <line x1="12" y1="1" x2="12" y2="3"></line>
             <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -864,7 +800,7 @@
              ========================================== -->
         <section id="setupView" class="view active">
             <h1>Rasta Matavai</h1>
-
+            
             <div>
                 <label>Nombre de joueurs</label>
                 <div class="stepper-control">
@@ -890,8 +826,7 @@
             <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
                 <button id="startGameBtn" class="primary">Démarrer la partie</button>
                 <button onclick="openRules()">Règles du jeu</button>
-                <button onclick="window.history.back()"
-                    style="background-color: transparent; border-color: transparent; font-size: 1rem;">Retour</button>
+                <button onclick="window.history.back()" style="background-color: transparent; border-color: transparent; font-size: 1rem;">Retour</button>
             </div>
         </section>
 
@@ -902,18 +837,18 @@
             <div class="game-display">
                 <div class="game-hud">
                     <h3>Au tour de : <span id="turnDisplay" class="highlight-text">--</span></h3>
-
+                    
                     <div class="active-target-area">
                         <div class="target-box">
                             <span class="target-label" id="targetLabel">CIBLE</span>
                             <span class="target-value" id="targetValue">--</span>
                         </div>
-
+                        
                         <div class="throws-column">
                             <div class="darts-indicator" id="dartsIndicator">
                                 <!-- Généré par JS -->
                             </div>
-
+                            
                             <!-- Affichage de la dernière volée (Vérification) -->
                             <div id="lastTurnDisplay" class="last-turn-container" style="visibility: hidden;">
                                 <span class="last-turn-name" id="lastTurnName">Dernier tour : </span>
@@ -930,30 +865,23 @@
 
             <div class="game-controls">
                 <div class="scoring-pad">
-                    <button class="btn-score"
-                        onclick="registerThrow(1)"><span><i>x1</i></span><span>Simple</span></button>
-                    <button class="btn-score"
-                        onclick="registerThrow(2)"><span><i>x2</i></span><span>Double</span></button>
-                    <button class="btn-score" id="btnTriple"
-                        onclick="registerThrow(3)"><span><i>x3</i></span><span>Triple</span></button>
+                    <button class="btn-score" onclick="registerThrow(1)"><span><i>x1</i></span><span>Simple</span></button>
+                    <button class="btn-score" onclick="registerThrow(2)"><span><i>x2</i></span><span>Double</span></button>
+                    <button class="btn-score" id="btnTriple" onclick="registerThrow(3)"><span><i>x3</i></span><span>Triple</span></button>
                     <button class="btn-score miss" onclick="registerThrow(0)"><span>Raté</span></button>
-
+                    
                     <!-- Bouton Suivant -->
                     <button class="btn-score action" id="skipBtn" onclick="skipRemainingDarts()">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="5 4 15 12 5 20 5 4"></polygon>
-                            <line x1="19" y1="5" x2="19" y2="19"></line>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line>
                         </svg>
                         <span>Suivant</span>
                     </button>
-
+                    
                     <!-- Bouton Annuler -->
                     <button class="btn-score action" id="undoBtn" onclick="undoAction()">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 7v6h6" />
-                            <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13" />
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/>
                         </svg>
                         <span>Annuler</span>
                     </button>
@@ -967,7 +895,7 @@
         <section id="endView" class="view">
             <h1 id="endTitle">Fin de la Manche</h1>
             <h2 id="winnerName" class="highlight-text" style="font-size: 2rem;">--</h2>
-
+            
             <h3 style="margin-top: 20px;">Statistiques</h3>
             <div id="statsContainer" class="stats-grid">
                 <!-- Stats générées par JS -->
@@ -975,17 +903,16 @@
 
             <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
                 <button id="nextLegBtn" class="primary" onclick="startNextLeg()">Manche Suivante</button>
+                <button id="replayBtn" class="primary" onclick="playAgain()" style="display: none;">Rejouer</button>
                 <button onclick="undoAction()">Oups, Annuler la dernière fléchette</button>
-                <button onclick="requestQuit()"
-                    style="background-color: transparent; border-color: transparent; font-size: 0.9rem;">Quitter /
-                    Nouvelle Partie</button>
+                <button onclick="requestQuit()" style="background-color: transparent; border-color: transparent; font-size: 0.9rem;">Quitter / Nouvelle Partie</button>
             </div>
         </section>
 
         <!-- ==========================================
              MODALS (POPUPS)
              ========================================== -->
-
+             
         <!-- Menu Principal / Paramètres -->
         <div id="settingsModal" class="modal-overlay">
             <div class="modal-content">
@@ -993,8 +920,7 @@
                 <div class="modal-actions" style="margin-top: 20px;">
                     <button class="primary" onclick="openRules()">Règles du jeu</button>
                     <button onclick="requestQuit()">Quitter la partie</button>
-                    <button onclick="closeSettings()"
-                        style="background-color: transparent; border-color: var(--border-color); font-size: 1rem;">Fermer</button>
+                    <button onclick="closeSettings()" style="background-color: transparent; border-color: var(--border-color); font-size: 1rem;">Fermer</button>
                 </div>
             </div>
         </div>
@@ -1004,16 +930,14 @@
             <div class="modal-content rules-content" style="max-width: 500px; max-height: 85vh; overflow-y: auto;">
                 <h2 class="highlight-text" style="text-align: center; margin-bottom: 20px;">Règles du Jeu</h2>
                 <p><strong>But du jeu :</strong> Avoir le plus de points à la fin des 7 volées.</p>
-                <p><strong>Déroulement :</strong> Chaque joueur lance 3 fléchettes par tour. La cible à viser change à
-                    chaque fléchette, de 1 jusqu'à 20, puis la Bulle en dernière fléchette.</p>
+                <p><strong>Déroulement :</strong> Chaque joueur lance 3 fléchettes par tour. La cible à viser change à chaque fléchette, de 1 jusqu'à 20, puis la Bulle en dernière fléchette.</p>
                 <ul>
                     <li>Fléchette 1 : Viser le 1</li>
                     <li>Fléchette 2 : Viser le 2</li>
                     <li>... et ainsi de suite ...</li>
                     <li>Dernière fléchette (la 21ème) : Viser la Bulle (B)</li>
                 </ul>
-                <p><strong>Points :</strong> Si vous touchez la bonne cible, vous marquez la valeur de la cible
-                    multipliée par la zone (Simple x1, Double x2, Triple x3).</p>
+                <p><strong>Points :</strong> Si vous touchez la bonne cible, vous marquez la valeur de la cible multipliée par la zone (Simple x1, Double x2, Triple x3).</p>
                 <p>La Bulle rapporte 25 pts (Simple) ou 50 pts (Double).</p>
                 <div class="modal-actions" style="margin-top: 25px;">
                     <button class="primary" onclick="closeRules()">Compris !</button>
@@ -1036,7 +960,7 @@
     </main>
 
     <!-- Numéro de version discret -->
-    <div class="version-number">v1.2</div>
+    <div class="version-number">v1.3</div>
 
     <script>
         /* =========================================
@@ -1047,7 +971,7 @@
             wakeLock: null,
             history: [], // Pile d'historique des états de jeu
             isTransitioning: false, // Verrouille l'UI pendant l'animation de changement de joueur
-
+            
             // État du jeu courant
             game: {
                 status: 'setup', // 'setup', 'playing', 'endLeg', 'endMatch'
@@ -1082,19 +1006,19 @@
             settingsModal: document.getElementById('settingsModal'),
             rulesModal: document.getElementById('rulesModal'),
             quitModal: document.getElementById('quitModal'),
-
+            
             playerCountVal: document.getElementById('playerCountVal'),
             legsToWinVal: document.getElementById('legsToWinVal'),
             playerNamesContainer: document.getElementById('playerNamesContainer'),
             startGameBtn: document.getElementById('startGameBtn'),
-
+            
             targetDisplay: document.getElementById('targetDisplay'),
             turnDisplay: document.getElementById('turnDisplay'),
             matchStatusDisplay: document.getElementById('matchStatusDisplay'),
             scoresContainer: document.getElementById('scoresContainer'),
             btnTriple: document.getElementById('btnTriple'),
             undoBtn: document.getElementById('undoBtn'),
-
+            
             lastTurnDisplay: document.getElementById('lastTurnDisplay'),
             lastTurnName: document.getElementById('lastTurnName'),
             lastTurnDarts: document.getElementById('lastTurnDarts'),
@@ -1102,7 +1026,8 @@
             endTitle: document.getElementById('endTitle'),
             winnerName: document.getElementById('winnerName'),
             statsContainer: document.getElementById('statsContainer'),
-            nextLegBtn: document.getElementById('nextLegBtn')
+            nextLegBtn: document.getElementById('nextLegBtn'),
+            replayBtn: document.getElementById('replayBtn')
         };
 
         /* =========================================
@@ -1116,7 +1041,7 @@
             DOM.fullscreenToggleBtn.addEventListener('click', toggleFullscreen);
             DOM.settingsBtn.addEventListener('click', openSettings);
             DOM.startGameBtn.addEventListener('click', startGame);
-
+            
             document.addEventListener('fullscreenchange', updateFullscreenIcons);
             document.addEventListener('webkitfullscreenchange', updateFullscreenIcons);
             document.addEventListener('mozfullscreenchange', updateFullscreenIcons);
@@ -1127,8 +1052,8 @@
                 requestWakeLock();
                 document.addEventListener('visibilitychange', handleVisibilityChange);
             }
-
-            updateDisplay();
+            
+            updateDisplay(); 
         }
 
         async function requestWakeLock() {
@@ -1158,7 +1083,7 @@
             state.theme = state.theme === 'dark' ? 'light' : 'dark';
             document.body.setAttribute('data-theme', state.theme);
         }
-
+        
         function toggleFullscreen() {
             const doc = window.document;
             const docEl = doc.documentElement;
@@ -1176,12 +1101,12 @@
                 }
             }
         }
-
+        
         function updateFullscreenIcons() {
             const isFullscreen = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
             const expandIcon = document.querySelector('.icon-expand');
             const compressIcon = document.querySelector('.icon-compress');
-
+            
             if (isFullscreen) {
                 expandIcon.style.display = 'none';
                 compressIcon.style.display = 'block';
@@ -1198,7 +1123,7 @@
             const valEl = document.getElementById(id + 'Val');
             let currentVal = parseInt(valEl.textContent);
             let newVal = currentVal + delta;
-
+            
             if (newVal >= min && newVal <= max) {
                 valEl.textContent = newVal;
                 if (id === 'playerCount') {
@@ -1225,7 +1150,7 @@
         function startGame() {
             const count = parseInt(DOM.playerCountVal.textContent) || 1;
             const legs = parseInt(DOM.legsToWinVal.textContent) || 1;
-
+            
             state.history = [];
             state.isTransitioning = false;
             state.game.status = 'playing';
@@ -1249,7 +1174,7 @@
                     name: nameInput.value.trim() || `Joueur ${i}`,
                     score: 0,
                     legsWon: 0,
-                    throwsThisLeg: []
+                    throwsThisLeg: [] 
                 });
             }
 
@@ -1265,14 +1190,39 @@
             state.game.startingPlayerIndex = (state.game.startingPlayerIndex + 1) % state.game.players.length;
             state.game.currentPlayerIndex = state.game.startingPlayerIndex;
             state.game.playersPlayedThisRound = 0;
-
+            
             state.game.dartInRound = 0;
             state.game.currentTurnThrows = [];
             state.game.lastTurn = null;
             state.game.legWinnerId = null;
+            
+            state.game.players.forEach(p => {
+                p.score = 0;
+                p.throwsThisLeg = [];
+            });
+
+            saveStateToHistory();
+            updateDisplay();
+        }
+
+        function playAgain() {
+            state.history = [];
+            state.isTransitioning = false;
+            state.game.status = 'playing';
+            state.game.currentRound = 0;
+            state.game.legNumber = 1;
+            state.game.startingPlayerIndex = 0;
+            state.game.playersPlayedThisRound = 0;
+            state.game.currentPlayerIndex = 0;
+            state.game.dartInRound = 0;
+            state.game.currentTurnThrows = [];
+            state.game.lastTurn = null;
+            state.game.legWinnerId = null;
+            state.game.matchWinnerId = null;
 
             state.game.players.forEach(p => {
                 p.score = 0;
+                p.legsWon = 0;
                 p.throwsThisLeg = [];
             });
 
@@ -1328,7 +1278,7 @@
         }
 
         function registerThrow(multiplier) {
-            if (state.isTransitioning) return;
+            if (state.isTransitioning) return; 
 
             saveStateToHistory();
 
@@ -1347,19 +1297,19 @@
             }
 
             currentPlayer.score += pointsEarned;
-            currentPlayer.throwsThisLeg.push(multiplier);
+            currentPlayer.throwsThisLeg.push(multiplier); 
 
             state.game.dartInRound++;
-
+            
             if (state.game.dartInRound >= 3) {
                 updateDisplay();
                 state.isTransitioning = true;
-
+                
                 setTimeout(() => {
                     advanceTurnLogic();
                     state.isTransitioning = false;
                     updateDisplay();
-                }, 800);
+                }, 800); 
             } else {
                 updateDisplay();
             }
@@ -1367,12 +1317,12 @@
 
         function skipRemainingDarts() {
             if (state.isTransitioning) return;
-
+            
             const dartsLeft = 3 - state.game.dartInRound;
             if (dartsLeft <= 0) return;
 
             // On sauvegarde l'état une seule fois pour que "Annuler" annule tout le saut d'un coup
-            saveStateToHistory();
+            saveStateToHistory(); 
 
             const currentPlayer = state.game.players[state.game.currentPlayerIndex];
 
@@ -1385,12 +1335,12 @@
 
             updateDisplay();
             state.isTransitioning = true;
-
+            
             setTimeout(() => {
                 advanceTurnLogic();
                 state.isTransitioning = false;
                 updateDisplay();
-            }, 800);
+            }, 800); 
         }
 
         function advanceTurnLogic() {
@@ -1401,17 +1351,17 @@
             };
 
             state.game.dartInRound = 0;
-            state.game.currentTurnThrows = [];
-
+            state.game.currentTurnThrows = []; 
+            
             state.game.playersPlayedThisRound++;
 
             if (state.game.playersPlayedThisRound >= state.game.players.length) {
                 state.game.playersPlayedThisRound = 0;
                 state.game.currentRound++;
-
+                
                 if (state.game.currentRound >= 7) {
                     handleLegEnd();
-                    return;
+                    return; 
                 }
             }
 
@@ -1421,13 +1371,13 @@
         function handleLegEnd() {
             const maxScore = Math.max(...state.game.players.map(p => p.score));
             const winners = state.game.players.filter(p => p.score === maxScore);
-
+            
             winners.forEach(w => w.legsWon++);
-
+            
             state.game.legWinnerId = winners.map(w => w.name).join(' & ');
 
             const matchWinners = state.game.players.filter(p => p.legsWon >= state.game.settings.legsToWin);
-
+            
             if (matchWinners.length > 0) {
                 state.game.status = 'endMatch';
                 state.game.matchWinnerId = matchWinners.map(w => w.name).join(' & ');
@@ -1462,12 +1412,12 @@
 
             if (state.game.status === 'setup') {
                 DOM.setupView.classList.add('active');
-            }
+            } 
             else if (state.game.status === 'playing') {
                 DOM.gameView.classList.add('active');
                 renderGameHUD();
                 renderPlayersGrid();
-
+                
                 const scoreBtns = document.querySelectorAll('.btn-score');
                 scoreBtns.forEach(btn => {
                     btn.disabled = state.isTransitioning || (btn.id === 'btnTriple' && getTargetNumber() === 21);
@@ -1475,7 +1425,7 @@
 
                 DOM.undoBtn.disabled = state.history.length === 0 || state.isTransitioning;
                 DOM.undoBtn.style.opacity = (state.history.length === 0 || state.isTransitioning) ? '0.5' : '1';
-            }
+            } 
             else if (state.game.status === 'endLeg' || state.game.status === 'endMatch') {
                 DOM.endView.classList.add('active');
                 renderEndScreen();
@@ -1485,12 +1435,19 @@
         function renderGameHUD() {
             const target = getTargetNumber();
             const currentPlayer = state.game.players[state.game.currentPlayerIndex];
-
+            
             const targetValueEl = document.getElementById('targetValue');
             const targetLabelEl = document.getElementById('targetLabel');
             const dartsIndicatorEl = document.getElementById('dartsIndicator');
 
-            if (target === 21) {
+            // Logique de dissimulation de la cible en fin de volée / changement de joueur
+            if (state.isTransitioning && state.game.dartInRound >= 3) {
+                targetValueEl.textContent = "--";
+                targetLabelEl.textContent = "CIBLE";
+            } else if (target > 21) {
+                targetValueEl.textContent = "--";
+                targetLabelEl.textContent = "FIN";
+            } else if (target === 21) {
                 targetValueEl.textContent = "B";
                 targetLabelEl.textContent = "BULLE";
             } else {
@@ -1502,7 +1459,7 @@
             for (let i = 0; i < 3; i++) {
                 const slot = document.createElement('div');
                 slot.className = 'dart-slot';
-
+                
                 if (i < state.game.currentTurnThrows.length) {
                     const throwVal = state.game.currentTurnThrows[i];
                     if (throwVal === 0) {
@@ -1515,7 +1472,7 @@
                 } else {
                     slot.classList.add('empty');
                 }
-
+                
                 dartsIndicatorEl.appendChild(slot);
             }
 
@@ -1523,7 +1480,7 @@
                 DOM.lastTurnDisplay.style.visibility = 'visible';
                 DOM.lastTurnName.textContent = `${state.game.lastTurn.playerName} :`;
                 DOM.lastTurnDarts.innerHTML = '';
-
+                
                 state.game.lastTurn.throws.forEach(throwVal => {
                     const miniSlot = document.createElement('div');
                     miniSlot.className = 'last-dart-mini';
@@ -1546,12 +1503,12 @@
 
         function renderPlayersGrid() {
             DOM.scoresContainer.innerHTML = '';
-
+            
             state.game.players.forEach((player, index) => {
                 const isActive = index === state.game.currentPlayerIndex;
                 const card = document.createElement('div');
                 card.className = `player-card ${isActive ? 'active-turn' : ''}`;
-
+                
                 const totalMarks = player.throwsThisLeg.reduce((sum, hit) => sum + hit, 0);
                 const dartsThrown = player.throwsThisLeg.length;
                 const mpr = dartsThrown > 0 ? ((totalMarks / dartsThrown) * 3).toFixed(2) : "0.00";
@@ -1568,19 +1525,20 @@
 
         function renderEndScreen() {
             const isMatchOver = state.game.status === 'endMatch';
-
+            
             DOM.endTitle.textContent = isMatchOver ? "FIN DU MATCH" : "FIN DE LA MANCHE";
             DOM.winnerName.textContent = isMatchOver ? state.game.matchWinnerId : state.game.legWinnerId;
-
+            
             DOM.nextLegBtn.style.display = isMatchOver ? 'none' : 'block';
+            DOM.replayBtn.style.display = isMatchOver ? 'block' : 'none';
 
             DOM.statsContainer.innerHTML = '';
-
+            
             state.game.players.forEach(player => {
                 const totalMarks = player.throwsThisLeg.reduce((sum, hit) => sum + hit, 0);
                 const dartsThrown = player.throwsThisLeg.length;
                 const mpr = dartsThrown > 0 ? ((totalMarks / dartsThrown) * 3).toFixed(2) : "0.00";
-
+                
                 const statCard = document.createElement('div');
                 statCard.className = 'stat-card';
                 statCard.innerHTML = `
@@ -1597,5 +1555,4 @@
 
     </script>
 </body>
-
 </html>
